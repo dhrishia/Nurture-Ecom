@@ -1,0 +1,218 @@
+ 
+   {% extends 'base.html' %}
+   {% load static %}
+   
+   
+   {% block content %}
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(img/bg-img/24.jpg);">
+            <h2>Checkout</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Checkout Area Start ##### -->
+    <div class="checkout_area mb-100">
+        <div class="container">
+            <form action="" id="coupon-form" method="POST" required>
+                {% csrf_token %}
+                <div style="margin: 10px; background: #b6b6b617; padding: 10px;">
+                        {% for i in allcoupon  %}
+                    
+                             <h6 class="text-center font-weight-bold" >Use <Code></Code><span style="color:#70c745;"> {{i.code}} </span> to avail <span  > {{i.discount}} % </span> discount on your orders above <span > ₹{{i.min_value}}</span>, valid till <span > {{i.valid_at}}</span></h6>
+                    
+                    
+                    {% endfor %}
+                 </div>
+
+         
+
+            <div class="welcome-btn-group" style=" border: 2px solid #70c745; background:#fff ; color:#70c745; margin-bottom:20px">
+                <input type="hidden" class="form-control"value="{{grand_total}}" name="grand_total" required/>
+                <input type="text" name="couponCode" class="col-lg-6 mx-auto" placeholder="Enter coupon code" style="font-weight: bold; border: 3px solid #fff; outline: none;">            
+            </div>
+            <button contact_form type="submit" class="btn alazea-btn" style="margin-bottom:20px">APPLY COUPON</button>
+        </form>
+
+            <div class="row justify-content-between">
+                <div class="col-12 col-lg-7">
+                    <form class="row contact_form" action="{% url 'confirmation' %}" method="POST">
+                        {%csrf_token%}
+                    <h4 class="font-weight-bold mt-0 mb-4 ml-2 text-center mx-auto">Select your Delivery Address</h4>
+    
+               {% for address in AllAddress %}
+                          <div class="container">
+                              <div class="card shadow my-2 col-lg-12">
+                                  <div class="card-body">
+                                    {% if address.default == True %}
+                                      <input type="radio"  name="selected_addresses" value="{{ address.id}}" checked>
+                                      {% else %}
+                                      <input type="radio"  name="selected_addresses" value="{{ address.id}}" >
+                                      {% endif %} 
+                                      <div class="container">
+                                          <p>{{ address.firstname}}</p>
+                                          <p>{{ address.address_line_1 }}</p>
+                                          <p>{{ address.address_line_2 }}</p>
+                                          <p>{{ address.city }} , {{ address.state }}</p>  
+                                          <p>{{ address.phone }}</p>
+                                          <p>{{ address.pincode }}</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                {% endfor %} 
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="checkout-content">
+                        <h5 class="title--">Your Order</h5>
+                        <div class="products">
+                            <div class="products-data">
+                                <h5>Products:</h5>
+
+                                {% for item in cart_items %}
+
+                                <div class="single-products d-flex justify-content-between align-items-center">
+                                    <p>{{item.product.name}}</p>
+                                    <p>{{item.quantity}}</p>
+                                    <h5>{{item.product.price}}</h5>
+                                </div>
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                        <div class="subtotal d-flex justify-content-between align-items-center">
+                            <h5>Subtotal</h5>
+                            <h5>{{subtotal}}</h5>
+                        </div>
+                        <div class="shipping d-flex justify-content-between align-items-center">
+                            <h5>Shipping</h5>
+                            <h5>Rs. 50.00</h5>
+                        </div>
+                        <div class="order-total d-flex justify-content-between align-items-center">
+                            <h5>Order Total</h5>
+                            <h5>{{grand_total}}</h5>
+                        </div>
+                        {% if discount %}
+
+                        <div class="order-total d-flex justify-content-between align-items-center">
+                            <h5>Coupon Applied. </h5>
+                         </div>
+                        <div class="order-total d-flex justify-content-between align-items-center">
+                            <h5>Coupon Code : {{coupon.code}} </h5>
+                         </div>
+                        <div class="order-total d-flex justify-content-between align-items-center">
+                            <h5>Coupon Discount({{coupon.discount}}%)</h5>
+                            <h5>-₹ {{coupon_discount}}</h5>
+                        </div>
+                        <div class="order-total d-flex justify-content-between align-items-center">
+                            <h5>Payable Amount</h5>
+                            <h5>₹ {{amountToBePaid}}</h5>
+                        </div>
+                        {% endif %}          
+
+                        <input type="hidden" class="form-control" value="{{subtotal}}" name="total" required/>
+                        <input type="hidden" class="form-control" value="{{grand_total}}" name="grand_total" required/>
+                        <input type="hidden" class="form-control" value="{{amountToBePaid}}" name="amountToBePaid" required/>
+                        <input type="hidden" class="form-control" id="couponCode" value="{{coupon.code }}" name="couponCode" required/>
+                        <input type="hidden" class="form-control" value="{{coupon_discount}}" name="couponDiscount" required/>
+
+                        <div class="checkout-btn mt-30">
+                            <button class="btn alazea-btn w-100" type="submit">Place Order</button>
+                        </div>
+                    </div>
+                </form>
+
+                </div>
+            </div>
+
+
+
+
+                 <div class="row justify-content-between">
+                <div class="col-12 col-lg-12">
+                  
+                     <div class="checkout_details_area clearfix" style="margin-top:200px">
+                        <h5>Add New Address</h5>
+                        <form action="#" method="post" action="{% url 'addaddress' 1 %}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label for="first_name">Address Name *</label>
+                                    <input type="text" class="form-control" id="add1"  name="address_line_1" placeholder="Address"required/>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label for="last_name">Landmark *</label>
+                                    <input type="text" class="form-control" id="add2"  name="address_line_2" placeholder="Landmark"required/>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label for="email_address">City *</label>
+                                    <select class="form-select" id="id_city" name="city" required><br>
+                                        <option value="">Select city</option>
+                                        {% for city in city %}
+                                            
+                                                <option value="{{ city }}">{{ city }}</option>
+                                            
+                                        {% endfor %}
+                                    </select><br>                                
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label for="phone_number">State *</label>
+                                    <select class="form-select" id="id_state" name="state" required><br>
+                                        <option value="">Select State</option>
+                                        {% for state in state %}
+                
+                                                <option value="{{ state }}">{{ state }}</option>
+            
+                                        {% endfor %}
+                                    </select><br>                                
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label for="company">Pin code</label>
+                                    <input type="text" class="form-control" id="pincode" name="pincode"  placeholder="Pincode" required pattern="[0-9]+" title="Please enter only digits" maxlength="6"/>
+                                </div>
+                                <input type="hidden" class="form-control" name="form_from" value="{{form_from}}" required/>
+
+                                
+                                 
+                                 
+                                <button type="submit" name="submit" class=" btn btn-info " style="height:50px">Save</button>
+
+                               
+                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if msg %}
+<script>
+  console.log("here");
+  swal("Message !", "{{msg}}", "info");
+
+</script>
+{% endif %}
+
+     
+    {% endblock content %}

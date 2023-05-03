@@ -1,0 +1,87 @@
+{% extends 'admin/adminbase.html' %}
+{% load static %}
+
+
+{% block content %}
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Products</h1>
+      <nav>
+        <ol class="breadcrumb">
+           <li class="breadcrumb-item">Add Product</li>
+         </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+          
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+
+       
+                
+
+            {%  if users_datas %}
+            <form class="row g-3" style="padding:30px" method="post"  action="{% url 'edit-user' user.id %}">
+              {% else %}
+              <form class="row g-3" style="padding:30px" method="post"  action="{% url 'save-user' %}">
+                {% endif %}
+
+                {% csrf_token %}
+
+                 {%for message in messages%}
+                <div class="alert " role="alert">
+                    {{message}}
+                </div>
+                {%endfor%}
+
+                <div class="col-md-12">
+                  <label for="inputNanme4" class="form-label">First name</label>
+                  <input type="text" class="form-control" value="{{users_datas.first_name}}"  name="first_name">
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputNanme4" class="form-label">Last name</label>
+                  <input type="text" class="form-control" value="{{users_datas.last_name}}"  name="last_name">
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputNanme4" class="form-label">Email</label>
+                  <input type="text" class="form-control" value="{{ users_datas.email}}"  name="email">
+                </div>
+
+               
+                
+                
+                <div class="text-center">
+                  <button type="submit" style="padding: 11px 42px; margin-top: 21px;" class="btn btn-primary">Save</button>
+                 </div>
+              </form>
+
+            </div>
+          </div>
+
+          
+
+          
+           
+
+        </div>
+
+       
+      </div>
+    </section>
+
+  </main>
+  
+  
+  <!-- End #main -->
+
+   {% endblock %}

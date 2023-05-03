@@ -1,0 +1,147 @@
+
+    {% extends 'base.html' %}
+    {% load static %}
+    
+    
+    {% block content %}
+    
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(img/bg-img/24.jpg);">
+            <h2>My Account</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Change address</li>
+                        </ol>
+                        <h5 class="breadcrumb-item active" aria-current="page">Hello,  {{request.user.first_name}}</h5>
+
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Contact Area Info Start ##### -->
+    
+
+
+    <section class="testimonial-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="testimonials-slides owl-carousel">
+
+                        <!-- Single Testimonial Slide -->
+                        <div class="single-testimonial-slide">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-md-6">
+                                    <form method="POST">
+
+                                        {% csrf_token %}
+                                    {% for address in addresses %}
+                
+                                    <div class="contact--thumbnail" style="padding: 16px;">
+                                        <input type="checkbox" name="selected_addresses" value="{{  address.id }}">
+                
+                                        <div class="container">
+                
+                                                <p>{{ address.firstname }}  {{ address.lastname }}</p>
+                                                <p>{{ address.phone }}</p>
+                                                <p>{{ address.email }}</p>
+                                                <p>{{ address.address_line_1 }}</p> 
+                                                <p>{{ address.address_line_2 }}</p>
+                                                <p>{{ address.city }} , {{ address.state }}</p>  
+                                                <p>{{ address.pincode }}</p>
+                                                <a href="{% url 'edit_address' address.id %}" class="btn btn-info mt-5">Edit</a>
+                                                {% if address.default == True %}
+                                                <a href="" class="btn btn-danger mt-5 mx-2 disabled">Default</a>
+                                                {% endif %}
+                
+                                            </div>                  
+                                          </div>
+                                          {% endfor %}
+                
+                
+                                <a href="{% url 'addaddress' 0 %}" class="btn btn-success mt-5">Add Address</a>
+                                <input type="submit" class="btn btn-danger mt-5" value="Delete">
+                            </form>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    
+                                    <div class="alazea-service-area mb-100">
+
+                                        <!-- Single Service Area -->
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s1.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'changepassword' %}"  style=" color:#fff"><h5>Change your Password</h5></a>
+                                             </div>
+                                        </div>
+                
+                                        <!-- Sing le Service Area -->
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s2.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'useraddress' %}" style=" color:#fff"><h5>View & Manage Addresses</h5></a>
+                                             </div>
+                                        </div>
+                
+                                        <!-- Single Service Area -->
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s3.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'updateuserprofile'  %}" style=" color:#fff"><h5>Change your profile details</h5></a>
+                                             </div>
+                                        </div>
+
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s3.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'orderhistory'  %}" style=" color:#fff"><h5>View & Manage orders and returns</h5></a>
+                                             </div>
+                                        </div>
+                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                         
+
+                        <!-- Single Testimonial Slide -->
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+     
+
+
+
+    {% endblock content %}

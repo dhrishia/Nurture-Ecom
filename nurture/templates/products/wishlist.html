@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(img/bg-img/24.jpg);">
+            <h2>Wishlist</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Cart Area Start ##### -->
+    <div class="cart-area section-padding-0-100 clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="cart-table clearfix">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                   </tr>
+                            </thead>
+                            <tbody>
+
+                                {% if wishlist_items %}
+
+                                {% for item in wishlist_items %}
+                                <tr>
+                                    <td class="cart_product_img">
+                                        <a href="#"><img src="{{item.item.productimage_set.first.images.url}}" alt="Product"></a>
+                                        <h5>{{item.item.name}}</h5>
+                                    </td>
+                                    {% if item.item.stock > 0 %}
+
+                                    <td>
+                                        <a href="{% url 'add-to-cart' item.item.id %}" class="btn alazea-btn">Add to cart</a>
+                                    </td>
+                                    
+                                      <td class="action"><a href="{% url 'remove_from_wishlist' item.id %}"><i class="icon_close"></i></a></td>
+
+                                  {%else%}
+                                      <a> Currently, Out of Stock </a>
+                                  {%endif%}
+
+                                </tr>
+
+                               
+
+                                {% endfor %}
+
+                                {% else %}
+                                <p>Your wishlist is empty.</p>
+
+                                {% endif %}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+           
+    
+
+
+    {% endblock content %}

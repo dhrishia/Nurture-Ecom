@@ -1,0 +1,78 @@
+
+    {% extends 'base.html' %}
+    {% load static %}
+    
+    
+    {% block content %}
+    
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(img/bg-img/24.jpg);">
+            <h2>My Account</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Contact Area Info Start ##### -->
+    <div class="contact-area-info section-padding-0-100">
+
+        
+
+        <div class="container">
+            <div class="section-heading">
+                <h5>Hello : {{ request.user.first_name }}</h5>
+             </div>
+            {% include 'message.html' %}
+            <div class="row align-items-center justify-content-between">
+                
+
+                <div class="col-12 col-md-5">
+                    
+                   
+                     <a href="{% url 'changepassword' %}" class="btn btn-success mt-5">Change your Password</a><br>
+
+                    <a href="{% url 'addaddress' 0 %}" class="btn btn-success mt-5">View & Manage Addresses</a><br>
+                    <a href="{% url 'updateuserprofile'  %}" class="btn btn-success mt-5">Change your profile details</a><br>
+                    <a href="{% url 'orderhistory' %}" class="btn btn-success mt-5">View & Manage orders and returns</a><br>
+
+                 </div>
+
+                 <div class="col-12 col-md-7">
+                    <div class="contact-form-area mt-100">
+                           
+
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ user_form.as_p }}
+                               <button type="submit" class="btn btn-primary mt-3">Save changes</button> 
+                            </form>
+
+
+                    </div>
+                 </div>
+
+
+
+                 
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+
+    {% endblock content %}

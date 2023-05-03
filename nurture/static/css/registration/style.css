@@ -1,0 +1,20 @@
+.register label{
+    margin-block-start: 10px;
+    margin-left: 20px;
+}
+
+.card-img-top {
+    flex-grow: 1;
+    object-fit:contain;
+}
+.card-body{
+    flex-grow:0;
+}
+
+.delete-confirm{
+        margin: auto;
+        width: 60%;
+        border: 3px solid #73AD21;
+        justify-content:center;
+        padding: 10px;
+}

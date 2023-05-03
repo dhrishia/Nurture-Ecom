@@ -1,0 +1,115 @@
+{% extends 'admin/adminbase.html' %}
+{% load static %}
+
+
+{% block content %}
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Products</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Admin</a></li>
+          <li class="breadcrumb-item">Products</li>
+         </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          
+
+          <div class="card">
+            <div class="card-body">
+              <a href="{% url 'addcoupon' %}"><button type="submit" style="margin:30px; float:right;" class="btn btn-primary">Add Coupon</button></a>
+               <h5 class="card-title"></h5>
+
+              <!-- Dark Table -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Code</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Min Value</th>
+                    <th scope="col">Valid From</th>
+                    <th scope="col">Valid To</th>
+                    <th scope="col">Active</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                 {% for coupon in coupons %}
+                  <tr>
+                    <th scope="row">{{ coupon.code }}</th>
+                    <td>{{ coupon.discount }} %</td>
+                    <td>{{ coupon.min_value }}</td>
+                    <td>{{ coupon.valid_from }}</td>
+                    <td>{{ coupon.valid_at }}</td>
+                     {% if coupon.active == True %}
+                    <td> True </td>
+                    {% else %}
+                    <td> False </td>
+                    {% endif %}
+                      
+                    <td>
+                     <a href="{% url 'editcoupon' coupon.id %}" style="padding-right:14px"><i class="bi bi-pencil-square"></i></a>
+                      <a href="{% url 'deletecoupon' coupon.id %}"><i class="bi bi-trash"></i></a> 
+
+                    </td>
+
+                  </tr>
+                  {% endfor %}
+                  
+                
+                 
+                </tbody>
+              </table>
+              <!-- End Dark Table -->
+
+            </div>
+          </div>
+
+          
+
+          
+           
+
+        </div>
+
+       
+      </div>
+    </section>
+
+  </main>
+  
+  
+  <!-- End #main -->
+
+
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+  <script>
+      alertify.set('notifier','position', 'top-right');
+      {% for msg in messages %}
+          alertify.success('{{ msg }}');
+      {% endfor %}
+      
+  </script>
+
+  <script>
+      function confirmDelete(event) {
+          event.preventDefault(); // prevent the link from redirecting immediately
+          alertify.confirm('Message', 'Are You Sure Want to Delete This', function(){
+              window.location.href = event.target.href; // redirect to the delete URL
+          }, function(){ 
+              alertify.error('Cancel')
+          });
+      }
+  </script>
+
+
+   {% endblock %}
