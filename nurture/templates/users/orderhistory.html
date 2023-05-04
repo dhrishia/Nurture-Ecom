@@ -1,5 +1,5 @@
 
-    {% extends 'base.html' %}
+    {% extends 'users/base.html' %}
     {% load static %}
     
     
@@ -24,80 +24,127 @@
             </div>
         </div>
     </div>
-    <!-- ##### Breadcrumb Area End ##### -->
+    
+    
+    
 
-    <!-- ##### Contact Area Info Start ##### -->
-    <div class="contact-area-info section-padding-0-100">
 
-        
-
+    <section class="testimonial-area section-padding-100">
         <div class="container">
-            <div class="section-heading">
-                <h5>Hello : {{ request.user.first_name }}</h5>
-             </div>
-            {% include 'message.html' %}
-            <div class="row align-items-center justify-content-between">
+            <div class="row">
+                <div class="col-12">
+                    <div class="testimonials-slides owl-carousel">
+
+                        <!-- Single Testimonial Slide -->
+                        <div class="single-testimonial-slide">
+                            <div class="row align-items-center">
+                               
+                                <div class="col-12 col-md-4">
+                                    
+                                    <div class="alazea-service-area "  style="border-radius: 5px;  border: 5px solid #ccc; background: #70c745;">
+
+                                        <!-- Single Service Area -->
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                             </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'changepassword' %}"  style=" color:#fff"><h5>Change your Password</h5></a>
+                                             </div>
+                                        </div>
                 
+                                        <!-- Sing le Service Area -->
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s2.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'useraddress' %}" style=" color:#fff"><h5>View & Manage Addresses</h5></a>
+                                             </div>
+                                        </div>
+                
+                                        <!-- Single Service Area -->
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s3.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'updateuserprofile'  %}" style=" color:#fff"><h5>Change your profile details</h5></a>
+                                             </div>
+                                        </div>
 
-                <div class="col-12 col-md-4">
-                    
-                   
-                     <a href="{% url 'changepassword' %}" class="btn btn-success mt-5">Change your Password</a><br>
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s3.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'orderhistory'  %}" style=" color:#fff"><h5> orders and returns</h5></a>
+                                             </div>
+                                        </div>
+                
+                                    </div>
+                                </div>
 
-                    <a href="{% url 'addaddress' 0 %}" class="btn btn-success mt-5">View & Manage Addresses</a><br>
-                    <a href="{% url 'updateuserprofile'  %}" class="btn btn-success mt-5">Change your profile details</a><br>
-                    <a href="{% url 'orderhistory' %}" class="btn btn-success mt-5">View & Manage orders and returns</a><br>
 
-                 </div>
-
-                 <div class="col-12 col-md-8">
-                    <div class="contact-form-area mt-100">
+                                <div class="col-12 col-md-8">
+                                    <div class="contact-form-area">
                            
 
-                        <div class="container">
-                            <div class="card shadow">
-                                <div class="card-body">  
-                                   <h5 class="p-2 text-danger text-center" style="border-bottom: 2px solid orange;">Your Orders</h5>
-                                   <table class="table table-hover">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">Order Id</th>
-                                        <th scope="col">Total Amount</th>
-                                        <th scope="col">Order Status</th>
-                                        <th scope="col">ordered On</th>
-                                        <th scope="col">View more</th>
-                                        <th scope="col">Action</th>
-                                      </tr>
-                                    </thead>
-                                    {% for order in orders %}
-                                    <tbody>
-                                      <tr>
-                                        <th scope="row">{{ order.order_number }}</th>
-                                        <td>{{ order.order_total }}</td>
-                                        <td>{{ order.status  }}</td>
-                                        <td>{{ order.created_at }}</td>
-                                        <td><a href="{% url 'order_complete' order.order_number %}"><i class='fa fa-file' style='font-size:28px;color:red'></i></a></td>
-                                        <td><a href="{% url 'vieworder' order.id %}" class="btn btn-success btn-sm">view</a></td>
-                                      </tr>
-                                      {% endfor %}
-                                    </tbody>
-                                  </table>
+                                        <div class="container">
+                                            <div class="card shadow">
+                                                <div class="card-body">  
+                                                   <h5 class="p-2 text-danger text-center" style="border-bottom: 2px solid orange;">Your Orders</h5>
+                                                   <table class="table table-hover">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">Order Id</th>
+                                                        <th scope="col">Total Amount</th>
+                                                        <th scope="col">Order Status</th>
+                                                        <th scope="col">ordered On</th>
+                                                        <th scope="col">View more</th>
+                                                        <th scope="col">Action</th>
+                                                      </tr>
+                                                    </thead>
+                                                    {% for order in orders %}
+                                                    <tbody>
+                                                      <tr>
+                                                        <th scope="row">{{ order.order_number }}</th>
+                                                        <td>{{ order.order_total }}</td>
+                                                        <td>{{ order.status  }}</td>
+                                                        <td>{{ order.created_at }}</td>
+                                                        <td><a href="{% url 'order_complete' order.order_number %}"><i class='fa fa-file' style='font-size:28px;color:red'></i></a></td>
+                                                        <td><a href="{% url 'vieworder' order.id %}" class="btn btn-success btn-sm">view</a></td>
+                                                      </tr>
+                                                      {% endfor %}
+                                                    </tbody>
+                                                  </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                
+                
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
+                         
+
+                        <!-- Single Testimonial Slide -->
+                        
 
                     </div>
-                 </div>
-
-
-
-                 
+                </div>
             </div>
         </div>
-    </div>
-    
-    
+    </section>
 
 
 

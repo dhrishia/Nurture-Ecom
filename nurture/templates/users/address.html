@@ -1,5 +1,5 @@
 
-    {% extends 'base.html' %}
+    {% extends 'users/base.html' %}
     {% load static %}
     
     
@@ -40,40 +40,9 @@
 
                         <!-- Single Testimonial Slide -->
                         <div class="single-testimonial-slide">
-                            <div class="row align-items-center">
-                                <div class="col-12 col-md-6">
-                                    <form method="POST">
-
-                                        {% csrf_token %}
-                                    {% for address in addresses %}
-                
-                                    <div class="contact--thumbnail" style="padding: 16px;">
-                                        <input type="checkbox" name="selected_addresses" value="{{  address.id }}">
-                
-                                        <div class="container">
-                
-                                                <p>{{ address.firstname }}  {{ address.lastname }}</p>
-                                                <p>{{ address.phone }}</p>
-                                                <p>{{ address.email }}</p>
-                                                <p>{{ address.address_line_1 }}</p> 
-                                                <p>{{ address.address_line_2 }}</p>
-                                                <p>{{ address.city }} , {{ address.state }}</p>  
-                                                <p>{{ address.pincode }}</p>
-                                                <a href="{% url 'edit_address' address.id %}" class="btn btn-info mt-5">Edit</a>
-                                                {% if address.default == True %}
-                                                <a href="" class="btn btn-danger mt-5 mx-2 disabled">Default</a>
-                                                {% endif %}
-                
-                                            </div>                  
-                                          </div>
-                                          {% endfor %}
-                
-                
-                                <a href="{% url 'addaddress' 0 %}" class="btn btn-success mt-5">Add Address</a>
-                                <input type="submit" class="btn btn-danger mt-5" value="Delete">
-                            </form>
-                                </div>
-                                <div class="col-12 col-md-6">
+                            <div class="row">
+                                
+                                <div class="col-12 col-md-4">
                                     
                                     <div class="alazea-service-area mb-100">
 
@@ -126,6 +95,41 @@
                 
                                     </div>
                                 </div>
+
+                                <div class="col-12 col-md-8">
+                                    <form method="POST">
+
+                                        {% csrf_token %}
+                                    {% for address in addresses %}
+                
+                                    <div class="contact--thumbnail" style="padding: 16px;">
+                                        <input type="checkbox" name="selected_addresses" value="{{  address.id }}">
+                
+                                        <div class="container">
+                
+                                                <p>{{ address.firstname }}  {{ address.lastname }}</p>
+                                                <p>{{ address.phone }}</p>
+                                                <p>{{ address.email }}</p>
+                                                <p>{{ address.address_line_1 }}</p> 
+                                                <p>{{ address.address_line_2 }}</p>
+                                                <p>{{ address.city }} , {{ address.state }}</p>  
+                                                <p>{{ address.pincode }}</p>
+                                                <a href="{% url 'edit_address' address.id %}" class="btn btn-info mt-5">Edit</a>
+                                                {% if address.default == True %}
+                                                <a href="" class="btn btn-danger mt-5 mx-2 disabled">Default</a>
+                                                {% endif %}
+                
+                                            </div>                  
+                                          </div>
+                                          {% endfor %}
+                
+                
+                                <a href="{% url 'addaddress' 0 %}" class="btn btn-success mt-5">Add Address</a>
+                                <input type="submit" class="btn btn-danger mt-5" value="Delete">
+                            </form>
+                                </div>
+
+
                             </div>
                         </div>
 

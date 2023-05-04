@@ -1,5 +1,5 @@
 
-    {% extends 'base.html' %}
+    {% extends 'users/base.html' %}
     {% load static %}
     
     
@@ -27,49 +27,100 @@
     <!-- ##### Breadcrumb Area End ##### -->
 
     <!-- ##### Contact Area Info Start ##### -->
-    <div class="contact-area-info section-padding-0-100">
+     
 
-        
 
+    <section class="testimonial-area section-padding-100">
         <div class="container">
-            <div class="section-heading">
-                <h5>Hello : {{ request.user.first_name }}</h5>
-             </div>
-            {% include 'message.html' %}
-            <div class="row align-items-center justify-content-between">
+            <div class="row">
+                <div class="col-12">
+                    <div class="testimonials-slides owl-carousel">
+
+                        <!-- Single Testimonial Slide -->
+                        <div class="single-testimonial-slide">
+                            <div class="row align-items-center">
+                               
+                                <div class="col-12 col-md-4">
+                                    
+                                    <div class="alazea-service-area mb-100">
+
+                                        <!-- Single Service Area -->
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s1.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'changepassword' %}"  style=" color:#fff"><h5>Change your Password</h5></a>
+                                             </div>
+                                        </div>
                 
+                                        <!-- Sing le Service Area -->
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s2.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'useraddress' %}" style=" color:#fff"><h5>View & Manage Addresses</h5></a>
+                                             </div>
+                                        </div>
+                
+                                        <!-- Single Service Area -->
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s3.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'updateuserprofile'  %}" style=" color:#fff"><h5>Change your profile details</h5></a>
+                                             </div>
+                                        </div>
 
-                <div class="col-12 col-md-5">
-                    
-                   
-                     <a href="{% url 'changepassword' %}" class="btn btn-success mt-5">Change your Password</a><br>
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s3.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'orderhistory'  %}" style=" color:#fff"><h5> orders and returns</h5></a>
+                                             </div>
+                                        </div>
+                
+                                    </div>
+                                </div>
 
-                    <a href="{% url 'addaddress' 0 %}" class="btn btn-success mt-5">View & Manage Addresses</a><br>
-                    <a href="{% url 'updateuserprofile'  %}" class="btn btn-success mt-5">Change your profile details</a><br>
-                    <a href="{% url 'orderhistory' %}" class="btn btn-success mt-5">View & Manage orders and returns</a><br>
 
-                 </div>
-
-                 <div class="col-12 col-md-7">
-                    <div class="contact-form-area mt-100">
+                                <div class="col-12 col-md-8">
+                                    <div class="contact-form-area">
                            
 
-                        <form method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {{ user_form.as_p }}
-                               <button type="submit" class="btn btn-primary mt-3">Save changes</button> 
-                            </form>
+                                        <form method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            {{ user_form.as_p }}
+                                               <button type="submit" class="btn btn-primary mt-3">Save changes</button> 
+                                            </form>
+                
+                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                         
+
+                        <!-- Single Testimonial Slide -->
+                        
 
                     </div>
-                 </div>
-
-
-
-                 
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     
     
 

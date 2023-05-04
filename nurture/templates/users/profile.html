@@ -1,5 +1,5 @@
 
-    {% extends 'base.html' %}
+    {% extends 'users/base.html' %}
     {% load static %}
     
     
@@ -37,21 +37,16 @@
                         <!-- Single Testimonial Slide -->
                         <div class="single-testimonial-slide">
                             <div class="row align-items-center">
-                                <div class="col-12 col-md-6">
-                                    <div class="testimonial-thumb">
-                                        <img src="{{user.image.url}}" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
+                               
+                                <div class="col-12 col-md-4">
                                     
-                                    <div class="alazea-service-area mb-100">
+                                    <div class="alazea-service-area "  style="border-radius: 5px;  border: 5px solid #ccc; background: #70c745;">
 
                                         <!-- Single Service Area -->
                                         <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
                                             <!-- Icon -->
                                             <div class="service-icon mr-30">
-                                                <img src="{% static 'img/core-img/s1.png' %}" alt="">
-                                            </div>
+                                             </div>
                                             <!-- Content -->
                                             <div class="service-content">
                                                 <a href="{% url 'changepassword' %}"  style=" color:#fff"><h5>Change your Password</h5></a>
@@ -89,10 +84,17 @@
                                             </div>
                                             <!-- Content -->
                                             <div class="service-content">
-                                                <a href="{% url 'orderhistory'  %}" style=" color:#fff"><h5>View & Manage orders and returns</h5></a>
+                                                <a href="{% url 'orderhistory'  %}" style=" color:#fff"><h5> orders and returns</h5></a>
                                              </div>
                                         </div>
                 
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-md-8">
+                                    <div class="testimonial-thumb">
+                                        <img src="{{user.image.url}}" alt="">
                                     </div>
                                 </div>
                             </div>

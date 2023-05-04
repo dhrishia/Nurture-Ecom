@@ -1,5 +1,5 @@
 
-    {% extends 'base.html' %}
+    {% extends 'users/base.html' %}
     {% load static %}
     
     
@@ -17,27 +17,82 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                            <li class="breadcrumb-item active" aria-current="page">Add address</li>
                         </ol>
                     </nav>
                 </div>
             </div>
         </div>
     </div>
-     
+      
  
-
-
+ 
 
     <section class="testimonial-area section-padding-100">
         <div class="container">
             <div class="row">
                 <div class="col-12">
- 
+                    <div class="testimonials-slides owl-carousel">
+
                         <!-- Single Testimonial Slide -->
                         <div class="single-testimonial-slide">
                             <div class="row align-items-center">
-                                <div class="col-12 col-md-6">
+                               
+                                <div class="col-12 col-md-4">
+                                    
+                                    <div class="alazea-service-area "  style="border-radius: 5px;  border: 5px solid #ccc; background: #70c745;">
+
+                                        <!-- Single Service Area -->
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                             </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'changepassword' %}"  style=" color:#fff"><h5>Change your Password</h5></a>
+                                             </div>
+                                        </div>
+                
+                                        <!-- Sing le Service Area -->
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s2.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'useraddress' %}" style=" color:#fff"><h5>View & Manage Addresses</h5></a>
+                                             </div>
+                                        </div>
+                
+                                        <!-- Single Service Area -->
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s3.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'updateuserprofile'  %}" style=" color:#fff"><h5>Change your profile details</h5></a>
+                                             </div>
+                                        </div>
+
+                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
+                                            <!-- Icon -->
+                                            <div class="service-icon mr-30">
+                                                <img src="{% static 'img/core-img/s3.png' %}" alt="">
+                                            </div>
+                                            <!-- Content -->
+                                            <div class="service-content">
+                                                <a href="{% url 'orderhistory'  %}" style=" color:#fff"><h5> orders and returns</h5></a>
+                                             </div>
+                                        </div>
+                
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-md-8">
                                     <div class="contact-form-area ">
                                         <form action="{% url 'addaddress' 0  %}" method="POST">
                                           {% csrf_token %}
@@ -92,61 +147,9 @@
                                       </form> 
                                   </div>
                                 </div>
-                                <div class="col-12 col-md-6">
-                                    
-                                    <div class="alazea-service-area mb-100">
-
-                                        <!-- Single Service Area -->
-                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
-                                            <!-- Icon -->
-                                            <div class="service-icon mr-30">
-                                                <img src="{% static 'img/core-img/s1.png' %}" alt="">
-                                            </div>
-                                            <!-- Content -->
-                                            <div class="service-content">
-                                                <a href="{% url 'changepassword' %}"  style=" color:#fff"><h5>Change your Password</h5></a>
-                                             </div>
-                                        </div>
-                
-                                        <!-- Sing le Service Area -->
-                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
-                                            <!-- Icon -->
-                                            <div class="service-icon mr-30">
-                                                <img src="{% static 'img/core-img/s2.png' %}" alt="">
-                                            </div>
-                                            <!-- Content -->
-                                            <div class="service-content">
-                                                <a href="{% url 'useraddress' %}" style=" color:#fff"><h5>View & Manage Addresses</h5></a>
-                                             </div>
-                                        </div>
-                
-                                        <!-- Single Service Area -->
-                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
-                                            <!-- Icon -->
-                                            <div class="service-icon mr-30">
-                                                <img src="{% static 'img/core-img/s3.png' %}" alt="">
-                                            </div>
-                                            <!-- Content -->
-                                            <div class="service-content">
-                                                <a href="{% url 'updateuserprofile'  %}" style=" color:#fff"><h5>Change your profile details</h5></a>
-                                             </div>
-                                        </div>
-
-                                        <div class="single-service-area d-flex align-items-center" style="background:#70c745;">
-                                            <!-- Icon -->
-                                            <div class="service-icon mr-30">
-                                                <img src="{% static 'img/core-img/s3.png' %}" alt="">
-                                            </div>
-                                            <!-- Content -->
-                                            <div class="service-content">
-                                                <a href="{% url 'orderhistory'  %}" style=" color:#fff"><h5>View & Manage orders and returns</h5></a>
-                                             </div>
-                                        </div>
-                
-                                    </div>
-                                </div>
                             </div>
- 
+                        </div>
+
                          
 
                         <!-- Single Testimonial Slide -->

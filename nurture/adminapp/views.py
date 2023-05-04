@@ -43,10 +43,9 @@ class AdminLogoutView(LogoutView):
 
 
 def dashboardView(request):
-    # products = Product.objects.all()
-
-    # context = {'products': products}
-    return render(request, 'admin/dashboard.html')
+ 
+    product_count=Product.objects.all().count()
+    return render(request, 'admin/dashboard.html',locals())
 
 def productsView(request):
     products = Product.objects.all()

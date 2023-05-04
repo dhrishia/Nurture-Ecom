@@ -28,7 +28,7 @@
     <!-- ##### Checkout Area Start ##### -->
     <div class="checkout_area mb-100">
         <div class="container">
-            <form action="" id="coupon-form" method="POST" required>
+             <form action="" id="coupon-form" method="POST" required>
                 {% csrf_token %}
                 <div style="margin: 10px; background: #b6b6b617; padding: 10px;">
                         {% for i in allcoupon  %}
@@ -46,7 +46,25 @@
                 <input type="text" name="couponCode" class="col-lg-6 mx-auto" placeholder="Enter coupon code" style="font-weight: bold; border: 3px solid #fff; outline: none;">            
             </div>
             <button contact_form type="submit" class="btn alazea-btn" style="margin-bottom:20px">APPLY COUPON</button>
-        </form>
+        </form> 
+
+      
+
+        {% comment %} <form action="" id="coupon-form" method="POST" required>
+            {% csrf_token %}
+
+            {% csrf_token %}
+            <div style="margin: 10px; background: #b6b6b617; padding: 10px;">
+                    {% for i in allcoupon  %}
+                
+                         <h6 class="text-center font-weight-bold" >Use <Code></Code><span style="color:#70c745;"> {{i.code}} </span> to avail <span  > {{i.discount}} % </span> discount on your orders above <span > ₹{{i.min_value}}</span>, valid till <span > {{i.valid_at}}</span></h6>
+                
+                
+                {% endfor %}
+             </div>
+            <input type="text" name="couponCode" class="col-lg-6 mx-auto" placeholder="Enter your coupon code" style=" border: 2px solid #70c745; background:#fff ; color:#70c745; margin-bottom:20px; height:44px">
+            <button class="btn alazea-btn" type="submit">APPLY COUPON</button>
+        </form> {% endcomment %}
 
             <div class="row justify-content-between">
                 <div class="col-12 col-lg-7">
