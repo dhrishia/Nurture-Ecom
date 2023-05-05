@@ -119,7 +119,7 @@
                                     <!-- Team Member Thumb -->
                                     <a href="{% url 'product-detail' product.id %}">
                                         <div class="team-member-thumb">
-                                         <img style="height:250px;" src="{{product.productimage_set.first.images.url}}" alt="">
+                                         <img style="height:250px; object-fit:cover" src="{{product.productimage_set.first.images.url}}" alt="">
                                    
                                         <!-- Social Info -->
                                             <div class="product-meta d-flex">
