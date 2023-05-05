@@ -557,7 +557,7 @@ def cancelOrder(request, id):
                 msg = "Your order has been successfully cancelled and amount has been refunded!"
                 mess = f'Hello\t{current_user.first_name},\nYour order has been canceled,Money will be refunded with in 1 hour\nThanks!'
                 send_mail(
-                    "The Homehaven  - Order Cancelled",
+                    "Nurture - Order Cancelled",
                     mess,
                     settings.EMAIL_HOST_USER,
                     [current_user.username],
